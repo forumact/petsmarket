@@ -11,6 +11,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Drupal\user\Entity\User;
 use Drupal\file\Entity\File;
+use Drupal\pigeonsworld\Helper\PigeonsWorldHelper;
+use Drupal\Core\Access\CsrfTokenGenerator;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * Provides a resource to get view modes by entity and bundle.
@@ -31,6 +35,22 @@ class LoginCheckRestResource extends ResourceBase {
      * @var \Drupal\Core\Session\AccountProxyInterface
      */
     protected $currentUser;
+	
+	
+  /**
+   * The CSRF token generator.
+   *
+   * @var \Drupal\Core\Access\CsrfTokenGenerator
+   */
+  protected $csrfToken;
+  
+  
+  /**
+   * The serializer.
+   *
+   * @var \Symfony\Component\Serializer\Serializer
+   */
+  protected $serializer;
 
     /**
      * Constructs a new LoginCheckRestResource object.
@@ -54,10 +74,12 @@ class LoginCheckRestResource extends ResourceBase {
         $plugin_definition,
         array $serializer_formats,
         LoggerInterface $logger,
-        AccountProxyInterface $current_user) {
+        AccountProxyInterface $current_user,
+		CsrfTokenGenerator $csrf_token) {
         parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
 
         $this->currentUser = $current_user;
+	    $this->csrfToken = $csrf_token;            
     }
 
     /**
@@ -70,7 +92,8 @@ class LoginCheckRestResource extends ResourceBase {
             $plugin_definition,
             $container->getParameter('serializer.formats'),
             $container->get('logger.factory')->get('pigeonsworld'),
-            $container->get('current_user')
+            $container->get('current_user'),
+			$container->get('csrf_token')
         );
     }
 
@@ -93,8 +116,19 @@ class LoginCheckRestResource extends ResourceBase {
         if(isset($payload['profileObj'])){
             if($payload['profileObj']['email']){
               $result = user_load_by_mail($payload['profileObj']['email']);
-              if($result){				 
-                $status['status'] = 'User Exists';
+              if($result){
+                  $user = User::load($result->id());
+                  user_login_finalize($user);
+                  $response_data['status'] = 1; 
+				  $response_data['uid'] = $user->id();
+				  $response_data['name'] = $user->getAccountName();
+				  $response_data['csrf_token'] = $this->csrfToken->get('rest');
+				  $response_data['token'] = $this->csrfToken->get('rest');
+				  $response_data['sessid'] = \Drupal::service('session')->getId();
+				  $response_data['session_name'] = \Drupal::service('session')->getName();
+				  $response_data['user_pic'] = PigeonsWorldHelper::fetchImage($user, 'user_picture', 'avatar');
+				  $response_data['about'] = $user->get('field_about')->value;
+				  $response_data['website'] = $user->get('field_website')->value;
               }else{
 
                 $pathinfo = basename($payload['profileObj']['imageUrl']);
@@ -122,12 +156,22 @@ class LoginCheckRestResource extends ResourceBase {
                 $user->save();
                 $user = User::load($user->id());
                 user_login_finalize($user);
-                $status['status'] = 1;
+				  $response_data['status'] = 1; 
+				  $response_data['uid'] = $user->id();
+				  $response_data['name'] = $user->getAccountName();
+				  $response_data['csrf_token'] = \Drupal::csrfToken();
+				  $response_data['token'] = \Drupal::csrfToken();
+				  $response_data['sessid'] = \Drupal::service('session')->getId();
+				  $response_data['session_name'] = \Drupal::service('session')->getName();
+				  $response_data['user_pic'] = PigeonsWorldHelper::fetchImage($user, 'user_picture', 'avatar');
+				  $response_data['about'] = $user->get('field_about')->value;
+				  $response_data['website'] = $user->get('field_website')->value;
+                
               }
             }
         }
 
-        return new ModifiedResourceResponse($status, 200);
+        return new ModifiedResourceResponse($response_data, 200);
     }
 
 }
