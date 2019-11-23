@@ -1,0 +1,24 @@
+
+pigeonsworld.default_controller_importFromWiki:
+  path: '/admin/pigeonsworld/import-from-wiki'
+  defaults:
+    _controller: '\Drupal\pigeonsworld\Controller\DefaultController::importFromWiki'
+    _title: 'Wiki Fetch'
+  requirements:
+    _permission: 'access content'
+
+pigeonsworld.default_controller_importFromWikiEnglish:
+  path: '/admin/pigeonsworld/import-from-wiki-en'
+  defaults:
+    _controller: '\Drupal\pigeonsworld\Controller\DefaultController::importFromWikiEn'
+    _title: 'Wiki Fetch English'
+  requirements:
+    _permission: 'access content'
+pigeonsworld.login.http:
+  path: '/api/v1/user/login'
+  defaults:
+    _controller: \Drupal\pigeonsworld\Controller\LoginRestController::login
+  methods: [POST]
+  requirements:
+    _user_is_logged_in: 'FALSE'
+    _format: 'json'

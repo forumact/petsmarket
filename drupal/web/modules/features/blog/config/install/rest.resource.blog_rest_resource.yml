@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - pigeonsworld
+    - serialization
+    - user
+id: blog_rest_resource
+plugin_id: blog_rest_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+    - xml
+  authentication:
+    - cookie

@@ -1,0 +1,19 @@
+name: Blog
+description: 'Provides Blog content type and related configuration. This content type used to capture the information about pigeons.'
+type: module
+core: 8.x
+dependencies:
+  - comment
+  - field
+  - image
+  - menu_ui
+  - node
+  - path
+  - pigeonsworld
+  - rdf
+  - rest
+  - serialization
+  - text
+  - user
+core_incompatible: false
+version: 8.x-1.0

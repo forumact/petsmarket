@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - image
+    - node
+id: node.field_pigeon
+field_name: field_pigeon
+entity_type: node
+type: image
+settings:
+  uri_scheme: public
+  default_image:
+    uuid: 0669105a-9ea8-4444-b7af-8e7bcd99b753
+    alt: ''
+    title: ''
+    width: 600
+    height: 758
+  target_type: file
+  display_field: false
+  display_default: false
+module: image
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+name: Pigeons
+description: 'Pigeons Content Type'
+type: module
+core: 8.x
+dependencies:
+  - comment
+  - field
+  - file
+  - flag
+  - image
+  - menu_ui
+  - node
+  - options
+  - path
+  - pigeonsworld
+  - rest
+  - serialization
+  - text
+  - user
+core_incompatible: false
+version: 8.x-1.0

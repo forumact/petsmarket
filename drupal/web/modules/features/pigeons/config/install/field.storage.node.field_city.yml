@@ -1,0 +1,116 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_city
+field_name: field_city
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Chennai
+      label: Chennai
+    -
+      value: Coimbatore
+      label: Coimbatore
+    -
+      value: Madurai
+      label: Madurai
+    -
+      value: Tiruchirappalli
+      label: Tiruchirappalli
+    -
+      value: Tiruppur
+      label: Tiruppur
+    -
+      value: Salem
+      label: Salem
+    -
+      value: Erode
+      label: Erode
+    -
+      value: Tirunelveli
+      label: Tirunelveli
+    -
+      value: Vellore
+      label: Vellore
+    -
+      value: Thoothukkudi
+      label: Thoothukkudi
+    -
+      value: Dindigul
+      label: Dindigul
+    -
+      value: Thanjavur
+      label: Thanjavur
+    -
+      value: Ranipet
+      label: Ranipet
+    -
+      value: Sivakasi
+      label: Sivakasi
+    -
+      value: Karur
+      label: Karur
+    -
+      value: Udhagamandalam
+      label: Udhagamandalam
+    -
+      value: Hosur
+      label: Hosur
+    -
+      value: Nagercoil
+      label: Nagercoil
+    -
+      value: Kancheepuram
+      label: Kancheepuram
+    -
+      value: Kumarapalayam
+      label: Kumarapalayam
+    -
+      value: Karaikkudi
+      label: Karaikkudi
+    -
+      value: Neyveli
+      label: Neyveli
+    -
+      value: Cuddalore
+      label: Cuddalore
+    -
+      value: Kumbakonam
+      label: Kumbakonam
+    -
+      value: Tiruvannamalai
+      label: Tiruvannamalai
+    -
+      value: Pollachi
+      label: Pollachi
+    -
+      value: Rajapalayam
+      label: Rajapalayam
+    -
+      value: Gudiyatham
+      label: Gudiyatham
+    -
+      value: Pudukkottai
+      label: Pudukkottai
+    -
+      value: Vaniyambadi
+      label: Vaniyambadi
+    -
+      value: Ambur
+      label: Ambur
+    -
+      value: Nagapattinam
+      label: Nagapattinam
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

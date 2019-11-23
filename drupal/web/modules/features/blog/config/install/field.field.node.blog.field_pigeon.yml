@@ -1,0 +1,37 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pigeon
+    - node.type.blog
+  module:
+    - image
+id: node.blog.field_pigeon
+field_name: field_pigeon
+entity_type: node
+bundle: blog
+label: Pigeon
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: 47de7a36-7247-41ab-8bd3-fd45375bf609
+    alt: ''
+    title: ''
+    width: 600
+    height: 749
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image
