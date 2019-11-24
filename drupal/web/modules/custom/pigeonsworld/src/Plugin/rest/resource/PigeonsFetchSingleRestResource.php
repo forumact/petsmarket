@@ -104,6 +104,7 @@ class PigeonsFetchSingleRestResource extends ResourceBase {
     $result['imguri'] = $fid = $entity->field_pigeon->target_id;
     $result['condition'] = $entity->get('field_conditions')->value;
     $result['category'] = $entity->get('field_category')->value;
+	$result['advert_type']= $entity->get('field_advert_type')->value;
     $result['status'] = $entity->get('field_status')->value;
     $result['city'] = $entity->get('field_city')->value;
     $result['price'] = $entity->get('field_price')->value;

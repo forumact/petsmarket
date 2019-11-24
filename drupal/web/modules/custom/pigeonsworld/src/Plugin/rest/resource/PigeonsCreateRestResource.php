@@ -104,6 +104,7 @@ class PigeonsCreateRestResource extends ResourceBase {
     $node->set('field_conditions', $payload['item_conditions']);
     $node->set('field_price', $payload['item_price']);
     $node->set('field_status', $payload['item_status']);
+    $node->set('field_advert_type', $payload['item_advert_type']);
     $node->field_pigeon1->setValue(['target_id' => $payload['item_picture1']]);
     $node->field_pigeon2->setValue(['target_id' => $payload['item_picture2']]);
     $node->field_pigeon3->setValue(['target_id' => $payload['item_picture3']]);
