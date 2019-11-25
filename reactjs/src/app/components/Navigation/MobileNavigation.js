@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Logo from "../../../assets/logo.png";
 import { MyRoutes } from "../../Routes/routes";
 import { NavLink } from "react-router-dom";
+import { Plus } from "../../Icons";
 
 export default class MobileNavigation extends Component {
   constructor(props) {
@@ -27,8 +28,8 @@ export default class MobileNavigation extends Component {
           (this.state.showMenu ? `closed` : this.props.showMenu)
         }
       >
-        <div className="svg-plus" onClick={() => this.handleShowHide("closed")}>
-          x
+        <div className="svg-plus1" onClick={() => this.handleShowHide("closed")}>
+          <Plus  onClick={() => this.handleShowHide("closed")}/>
         </div>
         <div className="side-menu-header">
           <figure className="logo small">

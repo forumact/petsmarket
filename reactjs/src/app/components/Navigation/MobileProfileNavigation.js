@@ -3,6 +3,7 @@ import { MyRoutes } from "../../Routes/routes";
 import { NavLink, withRouter, Link } from "react-router-dom";
 import { userLogout } from "../../Networks";
 import { fetuesrobject } from "../../helper";
+import { Plus } from "../../Icons";
 
 class MobileProfileNavigation extends Component {
   constructor(props) {
@@ -58,8 +59,11 @@ class MobileProfileNavigation extends Component {
           (this.state.showProfile ? `closed` : this.props.showProfile)
         }
       >
-        <div className="svg-plus" onClick={() => this.handleShowHide("closed")}>
-          x
+        <div
+          className="svg-plus1"
+          onClick={() => this.handleShowHide("closed")}
+        >
+          <Plus />
         </div>
         {loggedin ? (
           <Fragment>
