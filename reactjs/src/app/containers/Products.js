@@ -6,6 +6,7 @@ import Pagination from "react-js-pagination";
 import { GET_PRODUCTS } from "../Redux/actions";
 import ProductsFilter from "../components/Product/ProductsFilter";
 import { numberofitem } from "../const";
+import SearchResultFilter from "../components/SearchResultFilter";
 
 class Products extends Component {
   constructor(props) {
@@ -67,6 +68,8 @@ class Products extends Component {
             <div className="content">
               <div className="headline tertiary">
                 <h4>{count} Products Found</h4>
+                <SearchResultFilter></SearchResultFilter>
+                <div className="clearfix"></div>
               </div>
               <div className="product-showcase">
                 <div className="product-list grid column3-4-wrap">

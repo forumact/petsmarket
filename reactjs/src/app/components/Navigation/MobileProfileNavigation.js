@@ -108,13 +108,17 @@ class MobileProfileNavigation extends Component {
             </button>
           </Fragment>
         ) : (
-          <Link
-            to={"/login"}
-            className="button secondary"
-            onClick={() => this.handleShowHide("closed")}
-          >
-            Login
-          </Link>
+          <div className="side-menu-header">
+            <div className="">
+            <Link
+              to={"/login"}
+              className="button secondary"
+              onClick={() => this.handleShowHide("closed")}
+            >
+              Login
+            </Link>
+            </div>
+          </div>
         )}
       </div>
     );

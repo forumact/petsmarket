@@ -12,13 +12,13 @@ export default class SearchResultFilter extends Component {
           </select>
           <Arrow />
         </label>
-        <label htmlFor="itemspp_filter" className="select-block">
+        {/* <label htmlFor="itemspp_filter" className="select-block">
           <select name="itemspp_filter" id="itemspp_filter">
             <option value="0">12 Items Per Page</option>
             <option value="1">6 Items Per Page</option>
           </select>
           <Arrow />
-        </label>
+        </label> */}
       </form>
     );
   }
