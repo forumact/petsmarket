@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { flag } from "../../Networks";
+// import Sale from "../../../assets/sale.png";
+// import PullIcon from "../../../assets/pull-icon.png";
 
 export default class ProductMarketing extends Component {
   yourfavorites(e, nid) {
@@ -10,13 +12,12 @@ export default class ProductMarketing extends Component {
   render() {
     return (
       <div className="sidebar-item void buttons">
-        <a href="/" className="button big tertiary wcart">
-          {/* <span className="icon-present"></span> */}
-          <span>Ad Type: {this.props.product.advert_type}</span>
-        </a>
-        <a href="/" className="button big dark purchase">
-          <span className="indian-currency">{this.props.product.price}</span>
-          <span>Purchase Now!</span>
+        {/* <a href="/" className="button big tertiary wcart">          
+          <span>{this.props.product.advert_type}</span>
+        </a> */}
+        <a href="/" className="button big dark purchase wcart">
+          <span className="icon-credit-card"></span>
+          <span>{this.props.product.advert_type}</span>
         </a>
         <a href="/" className="button big tertiary wcart">
           <span className="icon-present"></span>

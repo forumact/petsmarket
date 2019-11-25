@@ -807,6 +807,13 @@ input[type="checkbox"]:checked + label > span > span {
   left: 35px;
 }
 
+.button.big.wcart span.icon-credit-card {
+  font-size: 25px;
+  position: absolute;
+  top: 16px;
+  left: 35px;
+}
+
 .button.big.wfav {
   padding-left: 72px;
 }
