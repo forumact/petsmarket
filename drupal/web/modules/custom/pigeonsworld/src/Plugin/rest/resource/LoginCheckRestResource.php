@@ -159,8 +159,8 @@ class LoginCheckRestResource extends ResourceBase {
 				  $response_data['status'] = 1; 
 				  $response_data['uid'] = $user->id();
 				  $response_data['name'] = $user->getAccountName();
-				  $response_data['csrf_token'] = \Drupal::csrfToken();
-				  $response_data['token'] = \Drupal::csrfToken();
+				  $response_data['csrf_token'] = $this->csrfToken->get('rest');
+				  $response_data['token'] = $this->csrfToken->get('rest');
 				  $response_data['sessid'] = \Drupal::service('session')->getId();
 				  $response_data['session_name'] = \Drupal::service('session')->getName();
 				  $response_data['user_pic'] = PigeonsWorldHelper::fetchImage($user, 'user_picture', 'avatar');
