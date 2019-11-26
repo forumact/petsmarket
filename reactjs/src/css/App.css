@@ -204,3 +204,9 @@ form > button[type="submit"][disabled] {
   background: url("../assets/social/fb.png") no-repeat center;
   top: 1px;
 }
+
+@media screen and (max-width: 630px) {
+  .form-popup .button.half.gchanges + .button.half {
+    margin-top: 22px !important;
+  }
+}

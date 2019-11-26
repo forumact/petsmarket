@@ -33,7 +33,11 @@ export default class MobileNavigation extends Component {
           {MyRoutes.map(route => {
             if (route.menu === "yes") {
               return (
-                <li key={route.path} className="dropdown-item">
+                <li
+                  key={route.path}
+                  className="dropdown-item"
+                  onClick={() => toggleMenu("mobile-menu", "closed")}
+                >
                   <NavLink exact to={route.path}>
                     {route.title}
                   </NavLink>

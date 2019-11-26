@@ -3468,6 +3468,9 @@ header .account-actions .button:last-child {
   margin: 22px auto 18px;
 }
 
+.side-menu .button:nth-last-child(1) {
+  margin: 22px auto 18px;
+}
 /*-------------------
   	MEDIA QUERIES
 -------------------*/

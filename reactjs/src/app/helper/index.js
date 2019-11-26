@@ -150,7 +150,7 @@ export function arrayRemove(arr, value) {
 }
 
 export function toggleMenu(id, flag) {
-  alert(id + "" + flag);
+  //alert(id + "" + flag);
   let field = document.getElementById(id);
 
   if (flag === "open") {

@@ -5,7 +5,7 @@ import { userLogout } from "../../Networks";
 import { fetuesrobject } from "../../helper";
 import { Plus } from "../../Icons";
 import { toggleMenu } from "../../helper";
-
+import { Avatar } from "../../helper";
 class MobileProfileNavigation extends Component {
   constructor(props) {
     super(props);
@@ -73,7 +73,6 @@ class MobileProfileNavigation extends Component {
                   </div>
                 </a>
                 <p className="user-name">{username}</p>
-                <p className="user-money">$745.00</p>
               </div>
             </div>
             <p className="side-menu-title">Your Account</p>
@@ -103,17 +102,28 @@ class MobileProfileNavigation extends Component {
             </button>
           </Fragment>
         ) : (
-          <div className="side-menu-header">
-            <div className="">
-              <Link
-                to={"/login"}
-                className="button secondary"
-                onClick={() => this.handleShowHide("closed")}
-              >
-                Login
-              </Link>
+          <Fragment>
+            <div className="side-menu-header">
+              <div className="user-quickview">
+                <a href="author-profile.html">
+                  <div className="outer-ring">
+                    <div className="inner-ring"></div>
+                    <figure className="user-avatar">
+                      <img src={Avatar} alt="avatar" />
+                    </figure>
+                  </div>
+                </a>
+                <p className="user-name">Anonymouse</p>
+              </div>
             </div>
-          </div>
+            <Link
+              to={"/login"}
+              className="button secondary medium"
+              onClick={() => toggleMenu("account-options-men", "closed")}
+            >
+              Login
+            </Link>
+          </Fragment>
         )}
       </div>
     );
