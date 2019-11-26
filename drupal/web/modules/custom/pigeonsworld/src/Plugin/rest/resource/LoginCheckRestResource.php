@@ -113,9 +113,9 @@ class LoginCheckRestResource extends ResourceBase {
         $status = [];
         
 		
-        if(isset($payload['profileObj'])){
-            if($payload['profileObj']['email']){
-              $result = user_load_by_mail($payload['profileObj']['email']);
+        if(isset($payload['email'])){
+            if($payload['email']){
+              $result = user_load_by_mail($payload['email']);
               if($result){
                   $user = User::load($result->id());
                   user_login_finalize($user);
@@ -131,11 +131,11 @@ class LoginCheckRestResource extends ResourceBase {
 				  $response_data['website'] = $user->get('field_website')->value;
               }else{
 
-                $pathinfo = basename($payload['profileObj']['imageUrl']);
+                $pathinfo = basename($payload['imageUrl']);
                 //$target = $pathinfo['filename'].'.'.$pathinfo['extension'];
                 $destination = "public://pictures/$pathinfo";				
-                $rr = system_retrieve_file($payload['profileObj']['imageUrl'], $destination, FALSE, FILE_EXISTS_RENAME);
-				$data = file_get_contents($payload['profileObj']['imageUrl']);
+                $rr = system_retrieve_file($payload['imageUrl'], $destination, FALSE, FILE_EXISTS_RENAME);
+				$data = file_get_contents($payload['imageUrl']);
                 $file = file_save_data($data, $destination, FILE_EXISTS_REPLACE);
                 				
 				$file = File::create([
@@ -146,10 +146,10 @@ class LoginCheckRestResource extends ResourceBase {
                 $user = User::create();
                 $user->setPassword('Sample');
                 $user->enforceIsNew();
-                $user->setEmail($payload['profileObj']['email']);
-                $user->setUsername($payload['profileObj']['givenName']);
-                $user->set("field_first_name", $payload['profileObj']['name']);
-                $user->set("field_last_name", $payload['profileObj']['familyName']);
+                $user->setEmail($payload['email']);
+                $user->setUsername($payload['givenName']);
+                $user->set("field_first_name", $payload['name']);
+                $user->set("field_last_name", $payload['familyName']);
                 $user->user_picture->setValue(['target_id' => $file->id()]);
                 $user->activate();
                 // Save user.

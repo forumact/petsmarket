@@ -301,3 +301,5 @@ export const googleClientID =
   "1000944645619-7sc2pdff16fp95tqpm08vb9lm9h8r3b7.apps.googleusercontent.com";
 
 export const ProdUrl = 'http://petsmarket.co.in/';
+
+export const facebookClientID = '2549384328515019';

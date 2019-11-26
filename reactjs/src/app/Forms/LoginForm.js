@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { LoginFormValidation, googleClientID } from "../const";
+import {
+  LoginFormValidation,
+  googleClientID,
+  facebookClientID
+} from "../const";
 import { login, loginCheckandCreate } from "../../app/Networks";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
@@ -22,6 +26,7 @@ class LoginForm extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.responseGoogle = this.responseGoogle.bind(this);
+    this.responseFacebook = this.responseFacebook.bind(this);
 
     this.submitted = false;
   }
@@ -68,7 +73,14 @@ class LoginForm extends Component {
   }
 
   responseGoogle(response) {
-    loginCheckandCreate(response).then(response => {
+    let profileObj = {
+      email: response.profileObj.email,
+      givenName: response.profileObj.givenName,
+      name: response.profileObj.name,
+      familyName: response.profileObj.familyName,
+      imageUrl: response.profileObj.imageUrl
+    };
+    loginCheckandCreate(profileObj).then(response => {
       console.log(response.data);
       if (response.data.status === 1) {
         console.log("user logged in");
@@ -84,7 +96,29 @@ class LoginForm extends Component {
     });
   }
 
-  responseFacebook() {}
+  responseFacebook(response) {
+    let profileObj = {
+      email: response.email,
+      givenName: response.name,
+      name: response.name,
+      familyName: response.name,
+      imageUrl: response.picture.data.url
+    };
+    loginCheckandCreate(profileObj).then(response => {
+      console.log(response.data);
+      if (response.data.status === 1) {
+        console.log("user logged in");
+        const userdetails = {
+          csrf: response.data.csrf_token,
+          uid: response.data.uid,
+          avatar: response.data.avatar
+        };
+        this.setState({ user: userdetails });
+        localStorage.setItem("userObject", JSON.stringify(response.data));
+        this.props.history.push("/");
+      }
+    });
+  }
 
   render() {
     let validation = this.submitted
@@ -155,7 +189,7 @@ class LoginForm extends Component {
           <hr className="line-separator double" />
 
           <FacebookLogin
-            appId="Your FacebookAPP ID"
+            appId={facebookClientID}
             autoLoad={false}
             fields="name,email,picture"
             callback={this.responseFacebook}
