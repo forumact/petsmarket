@@ -1,9 +1,8 @@
 import axios from "axios";
-import { querystring, fetuesrobject } from "../helper";
+import { querystring, fetuesrobject, fetchApiRoot } from "../helper";
 
-const axiosInstance = axios.create({  
-  baseURL: `http://petsmarket.local/drupal/web`
-  //baseURL: `http://petsmarket.co.in/drupal/web`
+const axiosInstance = axios.create({
+  baseURL: fetchApiRoot()
 });
 
 // Add a request interceptor
@@ -156,7 +155,6 @@ export async function fetchUserItems(data) {
 export async function loginCheckandCreate(data) {
   return await axiosInstance.post("/api/v1/logincheck", data);
 }
-
 
 export async function fetchFooterDetails() {
   return await axiosInstance.get("/api/v1/footerdetails?_format=json");

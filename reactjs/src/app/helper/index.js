@@ -167,3 +167,16 @@ export function toggleMenu(id, flag) {
     field.classList.add("closed");
   }
 }
+
+export function fetchApiRoot() {
+  
+  const hostname = window && window.location && window.location.hostname;
+  console.log(hostname);
+
+  if (hostname === "pets.market.co.in") {
+    backendHost = "http://pets.market.co.in";
+  } else {
+    backendHost = "http://petsmarket.local/drupal/web";
+  }
+  return backendHost;
+}
