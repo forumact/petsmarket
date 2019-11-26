@@ -4,6 +4,7 @@ import { NavLink, withRouter, Link } from "react-router-dom";
 import { userLogout } from "../../Networks";
 import { fetuesrobject } from "../../helper";
 import { Plus } from "../../Icons";
+import { toggleMenu } from "../../helper";
 
 class MobileProfileNavigation extends Component {
   constructor(props) {
@@ -52,16 +53,10 @@ class MobileProfileNavigation extends Component {
   render() {
     const { loggedin, userpic, username, uid } = this.state.userObject;
     return (
-      <div
-        id="account-options-menu"
-        className={
-          "side-menu right " +
-          (this.state.showProfile ? `closed` : this.props.showProfile)
-        }
-      >
+      <div id="account-options-men" className="side-menu right closed">
         <div
           className="svg-plus1"
-          onClick={() => this.handleShowHide("closed")}
+          onClick={() => toggleMenu("account-options-men", "closed")}
         >
           <Plus />
         </div>
@@ -110,13 +105,13 @@ class MobileProfileNavigation extends Component {
         ) : (
           <div className="side-menu-header">
             <div className="">
-            <Link
-              to={"/login"}
-              className="button secondary"
-              onClick={() => this.handleShowHide("closed")}
-            >
-              Login
-            </Link>
+              <Link
+                to={"/login"}
+                className="button secondary"
+                onClick={() => this.handleShowHide("closed")}
+              >
+                Login
+              </Link>
             </div>
           </div>
         )}

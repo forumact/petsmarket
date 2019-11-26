@@ -3,6 +3,7 @@ import Logo from "../../../assets/logo.png";
 import { MyRoutes } from "../../Routes/routes";
 import { NavLink } from "react-router-dom";
 import { Plus } from "../../Icons";
+import { toggleMenu } from "../../helper";
 
 export default class MobileNavigation extends Component {
   constructor(props) {
@@ -10,26 +11,17 @@ export default class MobileNavigation extends Component {
     this.state = {
       showMenu: ""
     };
-
-    this.handleShow = this.handleShowHide.bind(this);
-  }
-  handleShowHide(flag) {
-    //this.setState({ showMenu: "closed" });
-    this.props.handler('closed');
   }
 
   render() {
     return (
       // <div id="mobile-menu" className={`side-menu left ${this.props.showMenu}`}>
-      <div
-        id="mobile-menu"
-        className={
-          "side-menu left " +
-          (this.state.showMenu ? `closed` : this.props.showMenu)
-        }
-      >
-        <div className="svg-plus1" onClick={() => this.handleShowHide("closed")}>
-          <Plus  onClick={() => this.handleShowHide("closed")}/>
+      <div id="mobile-menu" className="side-menu left closed">
+        <div
+          className="svg-plus1"
+          onClick={() => toggleMenu("mobile-menu", "closed")}
+        >
+          <Plus />
         </div>
         <div className="side-menu-header">
           <figure className="logo small">

@@ -65,12 +65,20 @@ class Footer extends Component {
               </ul>
               <ul className="social-links">
                 <li className="social-link fb">
-                  <a href={facebookLink} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={facebookLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     &nbsp;
                   </a>
                 </li>
                 <li className="social-link twt">
-                  <a href={twitterLink} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={twitterLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     &nbsp;
                   </a>
                 </li>
@@ -91,37 +99,37 @@ class Footer extends Component {
               <ul className="link-list">
                 {/* <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/index.html#">
+                  <a href="#">
                     How to Join us
                   </a>
                 </li> */}
                 <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/index.html#">
+                  <a href="#">
                     Buying and Selling
                   </a>
                 </li>
                 <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/forum.html">
+                  <a href="#">
                     Emerald Forum
                   </a>
                 </li>
                 <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/blog-v1.html">
+                  <a href="#">
                     Emerald Blog
                   </a>
                 </li>
                 {/* <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/index.html#">
+                  <a href="#">
                     Free Goods
                   </a>
                 </li> */}
                 {/* <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/index.html#">
+                  <a href="#">
                     Job Oportunities
                   </a>
                 </li> */}
@@ -132,37 +140,37 @@ class Footer extends Component {
               <ul className="link-list">
                  <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/index.html#">
+                  <a href="#">
                     Partner Program
                   </a>
                 </li>
                 <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/index.html#">
+                  <a href="#">
                     Starting a Shop
                   </a>
                 </li>
                 <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/index.html#">
+                  <a href="#">
                     Purchase Credits
                   </a>
                 </li>
                 <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/index.html#">
+                  <a href="#">
                     Withdrawals
                   </a>
                 </li>
                 <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/index.html#">
+                  <a href="#">
                     World Meetings
                   </a>
                 </li> 
                 <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/index.html#">
+                  <a href="#">
                     How to Auction
                   </a>
                 </li>
@@ -173,13 +181,13 @@ class Footer extends Component {
               <ul className="link-list">
                 <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/index.html#">
+                  <a href="#">
                     Help Center
                   </a>
                 </li>
                 <li className="link-item">
                   <div className="bullet"></div>
-                  <a href="http://odindesign-themes.com/emerald-dragon/index.html#">
+                  <a href="#">
                     FAQs
                   </a>
                 </li>
@@ -195,8 +203,7 @@ class Footer extends Component {
           <div id="footer-bottom">
             <p>
               <span>©</span>
-              <a href="/">Arulraj</a> Template - All Rights Reserved{" "}
-              {this.getYear()}
+              <a href="/">petsmarket.co.in</a> {this.getYear()}
             </p>
           </div>
         </div>

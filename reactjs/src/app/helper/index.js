@@ -148,3 +148,22 @@ export function arrayRemove(arr, value) {
     return ele !== value;
   });
 }
+
+export function toggleMenu(id, flag) {
+  alert(id + "" + flag);
+  let field = document.getElementById(id);
+
+  if (flag === "open") {
+    var element = document.getElementById("shadow-film");
+    element.classList.remove("closed");
+    field.classList.remove("closed");
+    element.classList.add("open");
+    field.classList.add("open");
+  } else {
+    var element = document.getElementById("shadow-film");
+    element.classList.remove("open");
+    field.classList.remove("open");
+    element.classList.add("closed");
+    field.classList.add("closed");
+  }
+}
