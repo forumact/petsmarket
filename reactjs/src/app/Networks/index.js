@@ -44,7 +44,8 @@ export async function login(data) {
 }
 
 export async function fetchPigeons(data) {
-  return await axiosInstance.post("/api/v1/pigeons", data);
+  let params = querystring(data);
+  return await axiosInstance.get(`/api/v1/pigeons?_format=json&${params}`);
 }
 
 export async function fetchUserPigeons(payload) {
@@ -56,7 +57,8 @@ export async function fetchProductDetails(data) {
 }
 
 export async function fetchCommentList(data) {
-  return await axiosInstance.post("/api/v1/comment", data);
+  let params = querystring(data);
+  return await axiosInstance.get(`/api/v1/comment?_format=json&${params}`);
 }
 
 export async function commentcreate(data) {
@@ -65,15 +67,17 @@ export async function commentcreate(data) {
 
 export async function fetchBlogList(data) {
   let params = querystring(data);
-  return await axiosInstance.get(`/api/v1/blog?_format=json&${params}`, data);
+  return await axiosInstance.get(`/api/v1/blog?_format=json&${params}`);
 }
 
 export async function fetchBlogLatest(data) {
-  return await axiosInstance.post("/api/v1/blog-latest", data);
+  let params = querystring(data);
+  return await axiosInstance.get(`/api/v1/blog-latest?_format=json&${params}`);
 }
 
 export async function fetchBlogDetails(data) {
-  return await axiosInstance.post("/api/v1/blog-details", data);
+  let params = querystring(data);
+  return await axiosInstance.get(`/api/v1/blog-details?_format=json&${params}`);
 }
 
 export async function userUpdate(data) {
@@ -124,8 +128,8 @@ export async function getSellerInfo(data) {
   return await axiosInstance.post("/api/v1/seller-info", data);
 }
 
-export async function getProductFilter(data) {
-  return await axiosInstance.post("/api/v1/product-filter", {});
+export async function getProductFilter() {
+  return await axiosInstance.get("/api/v1/product-filter");
 }
 
 export async function getUserBasicInfo(data) {

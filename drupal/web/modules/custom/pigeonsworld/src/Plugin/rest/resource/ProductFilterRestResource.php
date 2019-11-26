@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "product_filter_rest_resource",
  *   label = @Translation("Product filter rest resource"),
  *   uri_paths = {
- *     "create" = "/api/v1/product-filter"
+ *     "canonical" = "/api/v1/product-filter"
  *   }
  * )
  */
@@ -81,7 +81,7 @@ class ProductFilterRestResource extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function post($payload) {
+  public function get() {
 
     $query = \Drupal::entityQueryAggregate('node')->condition('type', 'pigeon');
     $result = $query

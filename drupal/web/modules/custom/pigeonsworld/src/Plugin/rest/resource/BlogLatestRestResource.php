@@ -19,7 +19,7 @@ use Drupal\pigeonsworld\Helper\PigeonsWorldHelper;
  *   id = "blog_latest_rest_resource",
  *   label = @Translation("Fetch Latest or Popular blogs"),
  *   uri_paths = {
- *     "create" = "/api/v1/blog-latest"
+ *     "canonical" = "/api/v1/blog-latest"
  *   }
  * )
  */
@@ -85,22 +85,25 @@ class BlogLatestRestResource extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function post($payload) {
+  public function get() {
 
     $result = [];
+	
+	$nid = \Drupal::request()->query->get('nid');
+	$type = \Drupal::request()->query->get('type');
     
     $bundle = 'blog';
     $query = \Drupal::entityQuery('node');
     $query->condition('status', 1);
     $query->condition('type', $bundle);
-    if ($payload['type'] == 'Latest Blogs') {
+    if ($type == 'Latest Blogs') {
       $query->sort('changed', 'DESC');
     }
     else {
       $query->sort('nid');
     }
-    if ($payload['nid']) {
-      $query->condition('nid', $payload['nid'], '!=');
+    if ($nid) {
+      $query->condition('nid', $nid, '!=');
     }
     $query->range(0, 5);
     $entity_ids = $query->execute();

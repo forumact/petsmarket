@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
  *   id = "blog_fetch_single_rest_resource",
  *   label = @Translation("Fetch Blog Details"),
  *   uri_paths = {
- *     "create" = "/api/v1/blog-details"
+ *     "canonical" = "/api/v1/blog-details"
  *   }
  * )
  */
@@ -84,21 +84,21 @@ class BlogFetchSingleRestResource extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function post($payload) {
+  public function get() {
+	  
+	$result = [];  
+    
+	$nid = \Drupal::request()->query->get('nid');
+	
+    $entity = Node::load($nid);
 
-    // You must to implement the logic of your REST Resource here.
-    // Use current user after pass authentication to validate access.
-    if (!$this->currentUser->hasPermission('access content')) {
-      throw new AccessDeniedHttpException();
-    }
-
-    $entity = Node::load($payload['nid']);
-
+    if(!empty($entity)){
     $result['title'] = $entity->getTitle();
     $result['body'] = $entity->get('body')->value;
     $result['uid'] = $entity->getOwnerId();
     $result['img'] = PigeonsWorldHelper::fetchImage($entity, 'field_pigeon1', 'product_detail');
     \Drupal::logger('rest')->notice('BlogFetchSingleRestResource');
+	}
 
     return new ModifiedResourceResponse($result, 200);
   }

@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "pigeons_rest_resource",
  *   label = @Translation("Fetch Pigeons List"),
  *   uri_paths = {
- *     "create" = "/api/v1/pigeons"
+ *     "canonical" = "/api/v1/pigeons"
  *   }
  * )
  */
@@ -85,10 +85,14 @@ class PigeonsFetchListRestResource extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function post($payload) {
+  public function get($payload) {
 
-    $itemCount = ($payload['numberofitem']) ? $payload['numberofitem'] : 5;
-    $start = $payload['pagenumber'] * $payload['numberofitem'];
+    $numberOfItem = \Drupal::request()->query->get('numberofitem');
+    $pageNumber = \Drupal::request()->query->get('pagenumber');
+
+    $itemCount = ($numberOfItem) ? $numberOfItem : 5;
+    $start = $itemCount * $pageNumber;
+		
     $result = [];
 
     $bundle = 'pigeon';
