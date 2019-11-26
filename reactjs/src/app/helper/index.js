@@ -169,12 +169,12 @@ export function toggleMenu(id, flag) {
 }
 
 export function fetchApiRoot() {
-  
+  let backendHost;
   const hostname = window && window.location && window.location.hostname;
   console.log(hostname);
 
-  if (hostname === "pets.market.co.in") {
-    backendHost = "http://pets.market.co.in";
+  if (hostname === "petsmarket.co.in") {
+    backendHost = "http://petsmarket.co.in/drupal/web";
   } else {
     backendHost = "http://petsmarket.local/drupal/web";
   }
