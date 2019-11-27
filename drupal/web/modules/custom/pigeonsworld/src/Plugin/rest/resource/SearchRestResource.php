@@ -20,7 +20,7 @@ use Drupal\pigeonsworld\Helper\PigeonsWorldHelper;
  *   id = "search_rest_resource",
  *   label = @Translation("Search rest resource"),
  *   uri_paths = {
- *     "create" = "/api/v1/search"
+ *     "canonical" = "/api/v1/search"
  *   }
  * )
  */
@@ -86,20 +86,25 @@ class SearchRestResource extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function post($payload) {
-
-    
-	$itemCount = ($payload['numberofitem']) ? $payload['numberofitem'] : 5;
-    $start = $payload['pagenumber'] * $payload['numberofitem'];
+  public function get($payload) {
+	
+	$numberOfItem = \Drupal::request()->query->get('numberofitem');
+    $pageNumber = \Drupal::request()->query->get('pagenumber');
+    $category = \Drupal::request()->query->get('category');
+    $key = \Drupal::request()->query->get('key');
+	$uid = \Drupal::request()->query->get('uid');
+	
+	$itemCount = ($numberOfItem) ? $numberOfItem : 5;
+    $start = $itemCount * $pageNumber;
 	
     $entity_ids = $result = [];
     $index = Index::load('default_index');
 
     $query = $index->query();
-    $query->keys($payload['key']);
+    $query->keys($key);
     $query->setFulltextFields(['title', 'body']);
-	if($payload['category'] != 'All'){
-	  $query->addCondition('field_category', $payload['category']);		
+	if($category != 'All'){
+	  $query->addCondition('field_category', $category);		
 	}
 	$query->addCondition('type', 'pigeon');
 	$query->addCondition('status', 1);

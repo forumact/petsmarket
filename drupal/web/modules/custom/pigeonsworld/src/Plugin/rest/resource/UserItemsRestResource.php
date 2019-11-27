@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "user_items_rest_resource",
  *   label = @Translation("User items rest resource"),
  *   uri_paths = {
- *     "create" = "/api/v1/user/items"
+ *     "canonical" = "/api/v1/user/items"
  *   }
  * )
  */
@@ -85,15 +85,17 @@ class UserItemsRestResource extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function post($payload) {
+  public function get($payload) {
 
     $bundle = 'pigeon';
+	
+	$uid = \Drupal::request()->query->get('uid');
 
     $query = \Drupal::entityQuery('node');
     $query->condition('status', 1);
     $query->condition('type', $bundle);
-    if (!empty($payload['uid'])) {
-      $query->condition('uid', $payload['uid']);
+    if (!empty($uid)) {
+      $query->condition('uid', $uid);
     }
 
     $query->sort('nid');

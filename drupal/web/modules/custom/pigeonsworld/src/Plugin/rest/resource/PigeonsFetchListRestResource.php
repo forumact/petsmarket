@@ -85,10 +85,12 @@ class PigeonsFetchListRestResource extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function get($payload) {
+  public function get() {
 
     $numberOfItem = \Drupal::request()->query->get('numberofitem');
     $pageNumber = \Drupal::request()->query->get('pagenumber');
+    $filter = (\Drupal::request()->query->get('filter')) ? explode(',', \Drupal::request()->query->get('filter')): [];
+	$uid = (\Drupal::request()->query->get('uid')) ? explode(',', \Drupal::request()->query->get('uid')): [];
 
     $itemCount = ($numberOfItem) ? $numberOfItem : 5;
     $start = $itemCount * $pageNumber;
@@ -99,23 +101,23 @@ class PigeonsFetchListRestResource extends ResourceBase {
 
     $countQuery = \Drupal::entityQuery('node');
     $countQuery->condition('type', $bundle);
-    if (!empty($payload['uid'])) {
-      $countQuery->condition('uid', $payload['uid']);
+    if (!empty($uid)) {
+      $query->condition('uid', $uid);
     }
-    if (!empty($payload['filter'])) {
-      $countQuery->condition('field_category', $payload['filter'], 'IN');
+    if (!empty($filter)) {
+      $countQuery->condition('field_category', $filter, 'IN');
     }
     $result['count'] = $countQuery->count()->execute();
 
     $query = \Drupal::entityQuery('node');
     $query->condition('status', 1);
     $query->condition('type', $bundle);
-    if (!empty($payload['uid'])) {
-      $query->condition('uid', $payload['uid']);
+    if (!empty($uid)) {
+      $query->condition('uid', $uid);
     }
 
-    if (!empty($payload['filter'])) {
-      $query->condition('field_category', $payload['filter'], 'IN');
+    if (!empty($filter)) {
+      $query->condition('field_category', $filter, 'IN');
     }
 
     $query->sort('nid');

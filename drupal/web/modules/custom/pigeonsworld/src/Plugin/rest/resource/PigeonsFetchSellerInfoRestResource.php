@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "pigeons_fetch_seller_info_rest_resource",
  *   label = @Translation("Pigeons fetch seller info rest resource"),
  *   uri_paths = {
- *     "create" = "/api/v1/seller-info"
+ *     "canonical" = "/api/v1/seller-info"
  *   }
  * )
  */
@@ -83,9 +83,10 @@ class PigeonsFetchSellerInfoRestResource extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function post($payload) {
+  public function get($payload) {
 
-    $userObject = User::load($payload['uid']);
+    $uid = \Drupal::request()->query->get('uid');
+    $userObject = User::load($uid);
     $results['name'] = $userObject->get('name')->value;
     $results['about'] = $userObject->get('field_about')->value;
 	$results['mobile'] = $userObject->get('field_mobile')->value;

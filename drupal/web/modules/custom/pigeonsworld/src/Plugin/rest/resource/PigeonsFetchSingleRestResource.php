@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
  *   id = "product_details_rest_resource",
  *   label = @Translation("Product details rest resource"),
  *   uri_paths = {
- *     "create" = "/api/v1/pigeons-details"
+ *     "canonical" = "/api/v1/pigeons-details"
  *   }
  * )
  */
@@ -84,15 +84,12 @@ class PigeonsFetchSingleRestResource extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function post($payload) {
+  public function get($payload) {
     $result = [];
-    // You must to implement the logic of your REST Resource here.
-    // Use current user after pass authentication to validate access.
-    if (!$this->currentUser->hasPermission('access content')) {
-      throw new AccessDeniedHttpException();
-    }
-
-    $entity = Node::load($payload['nid']);
+	
+	$nid = \Drupal::request()->query->get('nid');
+	
+    $entity = Node::load($nid);
 
     $flag_service = \Drupal::service('flag.count');
     $flag_count = $flag_service->getEntityFlagCounts($entity);

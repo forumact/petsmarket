@@ -53,7 +53,8 @@ export async function fetchUserPigeons(payload) {
 }
 
 export async function fetchProductDetails(data) {
-  return await axiosInstance.post("/api/v1/pigeons-details", data);
+  let params = querystring(data);
+  return await axiosInstance.get(`/api/v1/pigeons-details?_format=json&${params}`, data);
 }
 
 export async function fetchCommentList(data) {
@@ -106,7 +107,8 @@ export async function productUpdate(data) {
 
 export async function siteSeach(data) {
   //return await axiosInstance.get(`/api/v1/site-search?_format=json&title=${data.title}`);
-  return await axiosInstance.post("api/v1/search", data);
+  let params = querystring(data);
+  return await axiosInstance.get(`api/v1/search?_format=json&${params}`);
 }
 
 export async function fileupload(data, fileApi) {
@@ -125,7 +127,8 @@ export async function fileupload(data, fileApi) {
 }
 
 export async function getSellerInfo(data) {
-  return await axiosInstance.post("/api/v1/seller-info", data);
+  let params = querystring(data);
+  return await axiosInstance.get(`/api/v1/seller-info?_format=json&${params}`);
 }
 
 export async function getProductFilter() {
@@ -153,7 +156,8 @@ export async function fetchUserDetails() {
 }
 
 export async function fetchUserItems(data) {
-  return await axiosInstance.post("/api/v1/user/items", data);
+  let params = querystring(data);
+  return await axiosInstance.get(`/api/v1/user/items?_format=json&${params}`);
 }
 
 export async function loginCheckandCreate(data) {
