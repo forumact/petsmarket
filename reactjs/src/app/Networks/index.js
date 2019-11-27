@@ -48,8 +48,9 @@ export async function fetchPigeons(data) {
   return await axiosInstance.get(`/api/v1/pigeons?_format=json&${params}`);
 }
 
-export async function fetchUserPigeons(payload) {
-  return await axiosInstance.post("/api/v1/pigeons", payload);
+export async function fetchUserPigeons(data) {
+  let params = querystring(data);
+  return await axiosInstance.get(`/api/v1/pigeons?_format=json&${params}`);
 }
 
 export async function fetchProductDetails(data) {

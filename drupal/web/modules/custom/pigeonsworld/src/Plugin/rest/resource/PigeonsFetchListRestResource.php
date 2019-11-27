@@ -90,7 +90,7 @@ class PigeonsFetchListRestResource extends ResourceBase {
     $numberOfItem = \Drupal::request()->query->get('numberofitem');
     $pageNumber = \Drupal::request()->query->get('pagenumber');
     $filter = (\Drupal::request()->query->get('filter')) ? explode(',', \Drupal::request()->query->get('filter')): [];
-	$uid = (\Drupal::request()->query->get('uid')) ? explode(',', \Drupal::request()->query->get('uid')): [];
+	$uid = \Drupal::request()->query->get('uid');
 
     $itemCount = ($numberOfItem) ? $numberOfItem : 5;
     $start = $itemCount * $pageNumber;
@@ -102,7 +102,7 @@ class PigeonsFetchListRestResource extends ResourceBase {
     $countQuery = \Drupal::entityQuery('node');
     $countQuery->condition('type', $bundle);
     if (!empty($uid)) {
-      $query->condition('uid', $uid);
+      $countQuery->condition('uid', $uid);
     }
     if (!empty($filter)) {
       $countQuery->condition('field_category', $filter, 'IN');
