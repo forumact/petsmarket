@@ -4,8 +4,8 @@ import { NavLink, withRouter, Link } from "react-router-dom";
 import { userLogout } from "../../Networks";
 import { fetuesrobject } from "../../helper";
 import { Plus } from "../../Icons";
-import { toggleMenu } from "../../helper";
-import { Avatar } from "../../helper";
+import { toggleMenu, Avatar } from "../../helper";
+import Cookies from "universal-cookie";
 class MobileProfileNavigation extends Component {
   constructor(props) {
     super(props);
@@ -22,8 +22,10 @@ class MobileProfileNavigation extends Component {
   }
 
   onSubmit = props => {
+    const cookies = new Cookies();
     userLogout().then(response => {
-      localStorage.removeItem("userObject");
+      //localStorage.removeItem("userObject");
+      cookies.remove("userObject", { path: "/" });
       this.props.history.push("/");
       console.log("login session removed");
     });

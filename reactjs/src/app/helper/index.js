@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import defaultPic from "../../assets/avatar.jpg";
 import { documentTitle } from "../const";
+import Cookies from "universal-cookie";
 
 export function getMapValue(obj, key) {
   if (obj.hasOwnProperty(key)) return obj[key];
@@ -8,10 +9,13 @@ export function getMapValue(obj, key) {
 }
 
 export function fetuesrobject(key) {
-  let retrieveduserObject = localStorage.getItem("userObject");
-  let retrievedObject = JSON.parse(retrieveduserObject);
+  const cookies = new Cookies();
+  //let retrieveduserObject = localStorage.getItem("userObject");
+  let retrieveduserObject = cookies.get("userObject");  
+  
   if (retrieveduserObject) {
-    return getMapValue(retrievedObject, key);
+    //let retrievedObject = JSON.parse(retrieveduserObject);    
+    return getMapValue(retrieveduserObject, key);
   }
   return 0;
 }
@@ -37,7 +41,9 @@ export const colorclass =
  */
 export function useTitle(titleOrFn) {
   useEffect(() => {
-    document.title = `${titleOrFn} | ${documentTitle}`;
+	  if(titleOrFn !== 'Home'){
+		document.title = `${titleOrFn} | ${documentTitle}`;
+	  }    
   });
 }
 

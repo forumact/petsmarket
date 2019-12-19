@@ -12,6 +12,7 @@ import { HideHeaderRegion } from "./app/helper";
 import { Provider } from "react-redux";
 import { getStore } from "./app/Redux/store";
 import { userloginCheck } from "../src/app/Networks";
+import Cookies from "universal-cookie";
 
 const store = getStore();
 
@@ -69,7 +70,14 @@ class App extends Component {
     //   console.log(response);
     // });
     //this.checkLoginStatus();
+
+    const cookies = new Cookies();
+    cookies.addChangeListener(this._onChange);
   }
+
+  _onChange = () => {
+    console.log("cookies updated");
+  };
 }
 
 export default withRouter(App);

@@ -4,6 +4,7 @@ import { userLogout } from "../../Networks";
 import { withRouter } from "react-router-dom";
 import { MyRoutes } from "../../Routes/routes";
 import { fetuesrobject } from "../../helper";
+import Cookies from "universal-cookie";
 
 class ProfileNavigation extends Component {
   constructor(props) {
@@ -47,8 +48,10 @@ class ProfileNavigation extends Component {
   }
 
   onSubmit = props => {
+    const cookies = new Cookies();
     userLogout().then(response => {
-      localStorage.removeItem("userObject");
+      //localStorage.removeItem("userObject");
+      cookies.remove("userObject", { path: "/" });
       this.props.history.push("/");
       console.log("login session removed");
     });

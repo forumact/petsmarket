@@ -149,6 +149,7 @@ class PigeonsFetchListRestResource extends ResourceBase {
         $result['products'][$i]['body'] = strip_tags($entity->get('body')->value);
         $result['products'][$i]['price'] = $entity->get('field_price')->value;
         $result['products'][$i]['category'] = $entity->get('field_category')->value;
+		$result['products'][$i]['city'] = $entity->get('field_city')->value;
         $result['products'][$i]['img'][] = PigeonsWorldHelper::fetchImage($entity, 'field_pigeon1', 'product');
 		if ($entity->get('field_pigeon2')->target_id) {
           $result['products'][$i]['img'][] = PigeonsWorldHelper::fetchImage($entity, 'field_pigeon2', 'product');

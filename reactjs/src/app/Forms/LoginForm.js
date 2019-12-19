@@ -9,6 +9,7 @@ import { login, loginCheckandCreate } from "../../app/Networks";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import { withRouter } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 import FormValidator from "../FormValidator";
 
@@ -41,6 +42,7 @@ class LoginForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const cookies = new Cookies();
 
     const validation = this.validator.validate(this.state);
     this.setState({ validation });
@@ -63,7 +65,13 @@ class LoginForm extends Component {
             avatar: response.data.avatar
           };
           this.setState({ user: userdetails });
-          localStorage.setItem("userObject", JSON.stringify(response.data));
+          //localStorage.setItem("userObject", JSON.stringify(response.data));
+
+          cookies.set("userObject", JSON.stringify(response.data), {
+            path: "/"
+          });
+          // console.log("iam here", cookies.get("userObject")); // Pacman
+
           this.props.history.push("/");
         });
       } catch (e) {
@@ -73,6 +81,7 @@ class LoginForm extends Component {
   }
 
   responseGoogle(response) {
+    const cookies = new Cookies();
     let profileObj = {
       email: response.profileObj.email,
       givenName: response.profileObj.givenName,
@@ -90,13 +99,15 @@ class LoginForm extends Component {
           avatar: response.data.avatar
         };
         this.setState({ user: userdetails });
-        localStorage.setItem("userObject", JSON.stringify(response.data));
+        //localStorage.setItem("userObject", JSON.stringify(response.data));
+        cookies.set("userObject", JSON.stringify(response.data), { path: "/" });
         this.props.history.push("/");
       }
     });
   }
 
   responseFacebook(response) {
+    const cookies = new Cookies();
     let profileObj = {
       email: response.email,
       givenName: response.name,
@@ -114,7 +125,8 @@ class LoginForm extends Component {
           avatar: response.data.avatar
         };
         this.setState({ user: userdetails });
-        localStorage.setItem("userObject", JSON.stringify(response.data));
+        //localStorage.setItem("userObject", JSON.stringify(response.data));
+        cookies.set("userObject", JSON.stringify(response.data), { path: "/" });
         this.props.history.push("/");
       }
     });
