@@ -91,10 +91,11 @@ class PigeonsFetchListRestResource extends ResourceBase {
     $pageNumber = \Drupal::request()->query->get('pagenumber');
     $filter = (\Drupal::request()->query->get('filter')) ? explode(',', \Drupal::request()->query->get('filter')): [];
 	$uid = (\Drupal::request()->query->get('uid')) ? \Drupal::request()->query->get('uid') : '';
+  $sortOrder = (\Drupal::request()->query->get('sortOrder')) ? \Drupal::request()->query->get('sortOrder') : '';
 
     $itemCount = ($numberOfItem) ? $numberOfItem : 5;
     $start = $itemCount * $pageNumber;
-		
+
     $result = [];
 
     $bundle = 'pigeon';
@@ -120,7 +121,12 @@ class PigeonsFetchListRestResource extends ResourceBase {
       $query->condition('field_category', $filter, 'IN');
     }
 
-    $query->sort('nid', 'DESC');
+    if(!empty($sortOrder)){
+      $query->sort('field_price', $sortOrder);
+    }else{
+      $query->sort('nid', 'DESC');
+    }
+
     $query->range($start, $itemCount);
     $entity_ids = $query->execute();
 
@@ -160,7 +166,7 @@ class PigeonsFetchListRestResource extends ResourceBase {
 		if ($entity->get('field_pigeon4')->target_id) {
           $result['products'][$i]['img'][] = PigeonsWorldHelper::fetchImage($entity, 'field_pigeon4', 'product');
 		}
-		
+
         $postOwner = User::load($entity->getOwnerId());
         $result['products'][$i]['avatar'] = PigeonsWorldHelper::fetchImage($postOwner, 'user_picture', 'avatar');
 

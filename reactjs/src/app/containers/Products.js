@@ -16,12 +16,14 @@ class Products extends Component {
       activePage: 1,
       itemsCountPerPage: numberofitem,
       totalItemsCount: 1,
-      productFilter: []
+      productFilter: [],
+      orderby: "ASC"
     };
 
     //Bind this event on click method
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleProductSort = this.handleProductSort.bind(this);
   }
 
   handleFilterChange(filter) {
@@ -40,7 +42,8 @@ class Products extends Component {
     const payload = {
       numberofitem: numberofitem,
       pagenumber: pageNumber - 1,
-      filter: this.state.productFilter
+      filter: this.state.productFilter,
+      sortOrder: this.state.sortOrder
     };
     console.log(`active page is ${pageNumber}`);
     this.props.getProducts(payload);
@@ -49,12 +52,25 @@ class Products extends Component {
     });
   }
 
+  handleProductSort(sortOrder) {
+    const payload = {
+      numberofitem: numberofitem,
+      pagenumber: 0,
+      sortOrder: sortOrder,
+      filter: this.state.productFilter
+    };    
+    this.props.getProducts(payload);
+    this.setState({
+      orderby: sortOrder
+    });
+  }
+
   componentDidMount() {
     const payload = {
       numberofitem: numberofitem,
       pagenumber: 0
     };
-    this.props.getProducts(payload);    
+    this.props.getProducts(payload);
   }
 
   render() {
@@ -68,7 +84,9 @@ class Products extends Component {
             <div className="content">
               <div className="headline tertiary">
                 <h4>{count} Products Found</h4>
-                <SearchResultFilter></SearchResultFilter>
+                <SearchResultFilter
+                  sortOrder={this.handleProductSort}
+                ></SearchResultFilter>
                 <div className="clearfix"></div>
               </div>
               <div className="product-showcase">
@@ -98,7 +116,7 @@ class Products extends Component {
                 ) : null}
               </div>
             </div>
-            <div className="sidebar">              
+            <div className="sidebar">
               <ProductsFilter
                 filterChange={this.handleFilterChange}
               ></ProductsFilter>
