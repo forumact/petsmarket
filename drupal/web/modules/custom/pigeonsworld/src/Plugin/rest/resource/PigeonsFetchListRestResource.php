@@ -176,8 +176,9 @@ class PigeonsFetchListRestResource extends ResourceBase {
 
     $response = new ResourceResponse($result, 200);
     $disable_cache = new CacheableMetadata();
-    $disable_cache->setCacheMaxAge(0);
-    $response->addCacheableDependency($disable_cache);
+    //$disable_cache->setCacheMaxAge(0);
+	$disable_cache->setCacheTags(['node_list']);
+    $response->addCacheableDependency($entities);
     \Drupal::logger('rest')->notice('PigeonsFetchListRestResource');
     return $response;
 

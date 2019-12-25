@@ -21,7 +21,9 @@ const HowToShop = () => {
           <div className="ht-banner-content">
             <p className="text-header">Create Your Account</p>
             <p>
-              Join Pets market to post your pets sale or buy related ads with zero costs.
+              Pets Market is advertising websites here you can regiter with zero
+              cost and post your ads. The best Advertise websites on tamilnadu
+              especially for Pets.
             </p>
             <Link to={`/user-register`} className="button mid dark">
               Create your <span className="primary">New Account</span>
