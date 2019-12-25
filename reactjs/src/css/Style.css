@@ -6766,9 +6766,9 @@ header .account-actions .button:last-child {
     	POST
   -----------*/
   
-  figure>img#product-src{
+  /* figure>img#product-src{
 	  width: 100%;
-  }
+  } */
   .post .post-image {
     width: 260px;
     height: 152px;

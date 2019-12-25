@@ -107,15 +107,15 @@ class MobileProfileNavigation extends Component {
           <Fragment>
             <div className="side-menu-header">
               <div className="user-quickview">
-                <a href="author-profile.html">
+                <Link to={"/login"}>
                   <div className="outer-ring">
                     <div className="inner-ring"></div>
                     <figure className="user-avatar">
                       <img src={Avatar} alt="avatar" />
                     </figure>
                   </div>
-                </a>
-                <p className="user-name">Anonymouse</p>
+                </Link>
+                <p className="user-name">Please Login with Us</p>
               </div>
             </div>
             <Link

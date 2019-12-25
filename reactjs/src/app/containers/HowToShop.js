@@ -21,12 +21,9 @@ const HowToShop = () => {
           <div className="ht-banner-content">
             <p className="text-header">Create Your Account</p>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor unt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in der
-              henderit in voluptate velit esse cillum dolore eu fugiat nulla
-              pariatur.
+              Pets Market is advertising websites here you can regiter with zero
+              cost and post your ads. The best Advertise websites on tamilnadu
+              especially for Pets.
             </p>
             <Link to={`/user-register`} className="button mid dark">
               Create your <span className="primary">New Account</span>
@@ -42,16 +39,12 @@ const HowToShop = () => {
           <div className="ht-banner-content">
             <p className="text-header">Browse Our Shop Items</p>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor unt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in der
-              henderit in voluptate velit esse cillum dolore eu fugiat nulla
-              pariatur.
+              Choose from over 2500 pets for sale on Pets Market, including
+              Pigeons for sale, Country chicken, siruvidai kozhi and Peruvidai.
             </p>
-            <a href="/" className="button mid dark">
+            <Link to={`/products`} className="button mid dark">
               <span className="primary">Most Popular</span> Items
-            </a>
+            </Link>
           </div>
         </div>
         <div className="ht-banner void blue">
@@ -64,9 +57,8 @@ const HowToShop = () => {
             <p className="text-header">Advertise Free</p>
             <p>
               Advertise your birds for sale on the{" "}
-              <strong>{documentTitle}</strong> website to
-              THOUSANDS of daily visitors. What's more, you can place a basic ad
-              online for FREE!.
+              <strong>{documentTitle}</strong> website to THOUSANDS of daily
+              visitors. What's more, you can place a basic ad online for FREE!.
             </p>
             <Link to={`/create-ad`} className="button mid dark">
               Place a <span className="primary">FREE ADD</span> now

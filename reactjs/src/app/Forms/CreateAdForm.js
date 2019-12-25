@@ -34,8 +34,9 @@ class CreateAddForm extends Component {
       item_status: "",
       item_conditions: "",
       item_city: "",
-      item_tags: "",
+      //item_tags: "",
       item_nid: 0,
+      isButtonDisabled: false,
       validation: this.validator.valid()
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -72,6 +73,9 @@ class CreateAddForm extends Component {
     file.value = "";
     console.log(validation.isValid);
     if (validation.isValid) {
+      this.setState({
+        isButtonDisabled: true
+      });
       if (this.state.item_nid) {
         productUpdate(this.state).then(response => {
           this.props.history.push(`/products/${this.state.item_nid}`);
@@ -96,7 +100,7 @@ class CreateAddForm extends Component {
             item_status: "",
             item_conditions: "",
             item_city: "",
-            item_tags: "",
+            //item_tags: "",
             item_nid: 0
           });
           this.props.history.push(`/products/${response.data.nid}`);
@@ -165,7 +169,9 @@ class CreateAddForm extends Component {
               );
             })}
           </select>
-          <span className="form-error">{validation.item_advert_type.message}</span>
+          <span className="form-error">
+            {validation.item_advert_type.message}
+          </span>
         </div>
         <div className="input-container">
           <label htmlFor="item_description" className="rl-label required">
@@ -293,7 +299,7 @@ class CreateAddForm extends Component {
           </select>
           <span className="form-error">{validation.item_city.message}</span>
         </div>
-        <div className="input-container">
+        {/* <div className="input-container">
           <label htmlFor="item_tags" className="rl-label required">
             Tags
           </label>
@@ -305,10 +311,14 @@ class CreateAddForm extends Component {
             onChange={this.handleInputChange}
           ></input>
           <span className="form-error">{validation.item_tags.message}</span>
-        </div>
+        </div> */}
         <hr className="line-separator" />
         {/* <button  type="submit" className="button big dark">Submit Item <span className="primary">for Review</span></button> */}
-        <button type="submit" className="button big dark">
+        <button
+          type="submit"
+          className="button big dark"
+          disabled={this.state.isButtonDisabled}
+        >
           {this.state.item_nid > 0 ? "Update" : "Submit"}
         </button>
       </form>
@@ -340,7 +350,7 @@ class CreateAddForm extends Component {
           item_status: response.data.status,
           item_conditions: response.data.condition,
           item_city: response.data.city,
-          item_tags: response.data.title,
+          //item_tags: response.data.title,
           item_picture: response.data.imguri,
           item_nid: response.data.nid
         });

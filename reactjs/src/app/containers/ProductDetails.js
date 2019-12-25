@@ -33,7 +33,7 @@ class ProductDetails extends Component {
     return (
       <Fragment>
         <Helmet>
-          <meta charSet="utf-8" />          
+          <meta charSet="utf-8" />
           <link rel="canonical" href={ProdUrl} />
         </Helmet>
         <Helmet
@@ -62,6 +62,7 @@ class ProductDetails extends Component {
                   <figure className="product-preview-image large liquid imgLiquid_bgSize imgLiquid_ready">
                     <img
                       id="product-src"
+                      className="product-preview-image"
                       src={this.state.image ? this.state.image : img1}
                       alt="product"
                     />

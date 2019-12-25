@@ -219,12 +219,12 @@ export const UploadFormValidation = [
     validWhen: false,
     message: "City is required."
   },
-  {
-    field: "item_tags",
-    method: "isEmpty",
-    validWhen: false,
-    message: "Tags is required."
-  },
+  // {
+  //   field: "item_tags",
+  //   method: "isEmpty",
+  //   validWhen: false,
+  //   message: "Tags is required."
+  // },
   {
     field: "item_advert_type",
     method: "isEmpty",
