@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LogoSmall from "../../../assets/logo_small.png";
+import LogoSmall from "../../../assets/logo.png";
 import { fetchFooterDetails } from "../../Networks";
 import { Link } from "react-router-dom";
 
