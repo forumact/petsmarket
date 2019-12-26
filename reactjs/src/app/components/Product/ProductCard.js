@@ -9,9 +9,9 @@ class ProductCard extends Component {
     return (
       <div className="product-item column">
         <div className="product-preview-actions">
-          <figure className="product-preview-image">
-            <img id="product-src" src={img} alt="product" />
-          </figure>
+          <div className="product-preview-image">
+            <img id="product-src1" src={img} alt="product" />
+          </div>
           <div className="preview-actions">
             <div className="preview-action">
               <NavLink exact to={`/products/${this.props.product.nid}`}>
