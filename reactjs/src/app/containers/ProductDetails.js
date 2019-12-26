@@ -30,10 +30,11 @@ class ProductDetails extends Component {
   render() {
     const { title, body, img } = this.state.product;
     let img1 = img ? img[0] : "";
+    let imgprview = this.state.image ? this.state.image : img1;
     return (
       <Fragment>
         <Helmet>
-          <meta charSet="utf-8" />          
+          <meta charSet="utf-8" />
           <link rel="canonical" href={ProdUrl} />
         </Helmet>
         <Helmet
@@ -59,18 +60,27 @@ class ProductDetails extends Component {
             <div className="content left">
               <article className="post">
                 <div className="post-image">
-                  <figure className="product-preview-image large liquid imgLiquid_bgSize imgLiquid_ready">
-                    <img
+                  <figure
+                    className="product-preview-image large liquid imgLiquid_bgSize imgLiquid_ready"
+                    style={{
+                      backgroundImage: `url(${imgprview})`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center center",
+                      backgroundSize: "contain"
+                    }}
+                  >
+                    {/* <img
                       id="product-src"
                       src={this.state.image ? this.state.image : img1}
                       alt="product"
-                    />
+                    /> */}
                   </figure>
                 </div>
                 <ImageSlider
                   image={img}
                   onChange={this.changeProductImage}
                 ></ImageSlider>
+                <hr className="line-separator" />
                 <div className="post-content">
                   {/* {body} */}
                   <div
